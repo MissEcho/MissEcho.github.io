@@ -14,11 +14,4 @@
 
 
 
-![](_media/img.jpg)
-
-
-
-![color](#f0f0f0)
-
-
 
