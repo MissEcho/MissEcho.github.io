@@ -7,10 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
-  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css"> -->
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/highlight.css">
   <link rel="stylesheet" href="./assets/css/prism-line-numbers.css">
@@ -21,15 +21,23 @@
   <script>
     window.$docsify = {
       loadSidebar: true,
-      subMaxLevel: 4,
-      coverpage: true,
-      themeColor: '#e9cf18',
-      name: '',
-      repo: ''
+      subMaxLevel: 2,
+      themeColor: '#549688',
+      name: '衣染 echo',
+      repo: '',
+      search: {
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        paths: "auto", // or 'auto'
+        placeholder: '搜索功能',
+        noData: 'No Results!',
+        // 搜索标题的最大程级, 1 - 6
+        depth: 2
+      },
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
 </body>
 
 </html>
