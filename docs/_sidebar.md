@@ -6,4 +6,5 @@
 + [公共函数](./yonbip/common.md)
 + [实用案例](./yonbip/example.md)
 + [个人开发想法](./yonbip/readme.md)
++ [viewmodel对象事件汇总](./yonbip/viewmodel.md)
 

@@ -114,6 +114,12 @@ ref.on('afterReferOkClick',function(data){
 
 
 
+## 标签页隐藏
+
+```javascript
+viewModel.execute('updateViewMeta',{code:'容器编码',visible:false})
+```
+
 
 
 

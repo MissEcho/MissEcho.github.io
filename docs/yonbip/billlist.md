@@ -58,6 +58,7 @@ afterLoadData       //数据加载完成后事件
 //挂载在gridModel上
 beforeSetDataSource   //设置数据源前的事件
 afterSetDataSource    //设置数据源后的事件
+beforedbclick //双击事件
 ```
 
 #### 查询前增加默认值
@@ -248,6 +249,8 @@ function (event) {
         });
     });
 }
+//禁用查询字段
+viewModel.getCache('FilterViewModel').get('code').get('fromModel').setDisabled(true)
 ```
 
 
@@ -271,6 +274,24 @@ gridModel.on('cellJointQuery', ({cellName, row, rowIndex}) => {
 
 
 ## 表格指定某些行可编辑
+
+```javascript
+//设置表格为只读
+gridModel.setReadOnly(false)
+//倒序增行
+gridModel.insertRow(0,null,true)
+
+
+//表格合计
+viewModel.getGridModel().doPropertyChange('changeGridProps', {
+    showAggregates: 'local', 
+    showCheckBox: false ,
+    isPagination: false
+});
+
+//禁用行操作
+viewModel.getGridModel().setRowState(0, 'disabled', true)
+```
 
 
 

@@ -16,6 +16,20 @@
 
 保存后即可。
 
+```javascript
+//打开模态框表单
+viewmodel.communication({
+    type: 'modal',
+    payload: {
+        mode: 'inner',
+        groupCode: 'form312tg', // 设计器表单容器编号
+        viewmodel: viewmodel,
+    },
+});
+```
+
+
+
 
 
 
@@ -38,7 +52,7 @@
 
 
 
-## 其他
+## 其他相关资料
 
  [新附件管理] https://www.yuque.com/docs/share/c5790874-1cd3-4444-bc77-1222f4ffc1b5
 
