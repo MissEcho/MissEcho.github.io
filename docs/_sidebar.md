@@ -5,6 +5,6 @@
 + [详情页面](./yonbip/billdetail.md)
 + [公共函数](./yonbip/common.md)
 + [实用案例](./yonbip/example.md)
-+ [个人开发想法](./yonbip/readme.md)
++ [审批流配置](./yonbip/flow.md)
 + [viewmodel对象事件汇总](./yonbip/viewmodel.md)
 
