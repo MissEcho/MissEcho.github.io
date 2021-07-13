@@ -1,17 +1,48 @@
 ## 默认规则
 
-线上，默认全局对象为 viewModel（驼峰），线下默认全局对象为 viewmodel（小写），其他都基本一致。
+默认全局对象为 viewModel（驼峰）
 
 在扩展工程mdf-comp-app中，使用脚本自动生成页面扩展脚本。使用过程如下：
 
 
 
-## 设置显示隐藏，更改属性
+## 参照框确定按钮监听事件
+
+~~~javascript
+var ref = viewModel.get('ref_name');
+ref.on('afterReferOkClick',function(data){
+   //参照选择的数据
+   console.log(data);
+})
+~~~
+
+
+
+## 前端请求第三方接口
+
+```javascript
+function  get (data,callback) {
+    window.URL = window.URL || window.webkitURL;
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", data, true);
+    xhr.responseType = "blob";
+    xhr.onload = function () {
+      if (this.status == 200) {
+        var blob = this.response;
+        callback();
+      }
+    };
+    xhr.send();
+  };
+```
+
+## 设置显示隐藏，更改属性，必输，
 
 ```javascript
 viewModel.get('button').setVisible(true); //按钮
 viewModel.get('field').setVisible(true);//字段
 viewModel.get('field').setState('bCanModify'，false);//字段不可编辑
+viewModel.get('field').setState('bIsNull',true)
 ```
 
 
@@ -72,6 +103,9 @@ viewmodel.communication({
         html: html,
     },
 });
+
+//关闭模态框
+viewModel.communication({type:'modal',payload:{data:false}});
 ```
 
 ## 模仿新增按钮进行新增(多个新增页面,保存变更的时候也有该需求)
@@ -102,8 +136,6 @@ const execCmdAdd = (viewmodel, card) => {
   viewmodel.biz.do('add', viewmodel, args);
 };
 ```
-
-
 
 
 
@@ -149,9 +181,60 @@ function (event) {
 }
 ```
 
+## 打开新页签
 
+~~~javascript
+cb.mrjt.jDiwork.openService(
+    '1a595ad9-518d-4d8e-9ef9-0483567a8528',
+    {},
+    {
+        data: { selectRows },
+        type: 1,
+        title: '生成收款单',
+        code: '',
+        url: '',
+    }
+);
+~~~
 
+ ## 在当前页面打开新页面
 
+~~~javascript
+let changeData = {
+    billtype: 'Voucher',
+    billno: 'c23cc890',
+    params: {
+        billFlag: 'reCreatFlag',
+        id: res.id,
+        mode: 'edit',
+        carryData: res,
+        readOnly: true,
+        showSearch: false,
+        title: '订单详情',
+    },
+};
+cb.loader.runCommandLine('bill', changeData, viewModel);
+~~~
+
+## 使用弹窗生成form表单
+
+先在页面上加入一个form表单；
+
+右键打开编辑器，更改 cCtype 为 modal
+
+保存后即可。
+
+```javascript
+//打开模态框表单
+viewmodel.communication({
+    type: 'modal',
+    payload: {
+        mode: 'inner',
+        groupCode: 'form312tg', // 设计器表单容器编号
+        viewmodel: viewmodel,
+    },
+});
+```
 
 
 

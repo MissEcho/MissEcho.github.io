@@ -112,13 +112,26 @@ ref.on('afterReferOkClick',function(data){
 })
 ```
 
-
-
-## 标签页隐藏
+## 卡片组隐藏
 
 ```javascript
 viewModel.execute('updateViewMeta',{code:'容器编码',visible:false})
 ```
+
+## 删除事件
+
+~~~javascript
+function (event) {
+  var viewModel = this;
+  viewModel.on('beforeDelete',function(params){
+    var data = JSON.parse(params.data.data);
+    if('2' ==data.new1){
+        return false;
+    }
+  });
+}
+
+~~~
 
 
 

@@ -7,4 +7,8 @@
 + [实用案例](./yonbip/example.md)
 + [审批流配置](./yonbip/flow.md)
 + [viewmodel对象事件汇总](./yonbip/viewmodel.md)
++ [常见问题](./yonbip/problem.md)
++ [常见配置](./yonbip/config.md)
+
+
 

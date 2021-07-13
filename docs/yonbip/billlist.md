@@ -39,11 +39,7 @@ function (event) {
 } 
 ```
 
-
-
 ## 表格事件监听
-
-事件汇总
 
 ```
 //挂载在卡片界面 viewmodel
@@ -55,81 +51,14 @@ afterDeleteRow //删除行之后
 afterLoadData       //数据加载完成后事件
 
 
+
 //挂载在gridModel上
 beforeSetDataSource   //设置数据源前的事件
 afterSetDataSource    //设置数据源后的事件
 beforedbclick //双击事件
 ```
 
-#### 查询前增加默认值
-
-```javascript
-viewModel.on('beforeSearch',function(args){
-    //需要获取当前人的身份信息，确定默认的查询条件
-    var promise = new cb.promise();
-    setTimeout(function() {
-        cb.rest.invokeFunction("2abae82cef154bd194d7069135011395", {},
-                               function(err, res) {
-            if(err!=null){
-                cb.utils.alert('查询数据异常');
-                permissions = [];
-                return false;
-            }else{
-                args.isExtend = true;
-                //请求数据的条件，获取统计信息的时候需要用到
-                reqCondition= args.params.condition;
-                commonVOs = args.params.condition.commonVOs;
-                if(undefined==permissions){
-                    //设置一个不可能查询出数据的条件
-                    cb.utils.alert('查询数据异常--获取人员失败');
-                    commonVOs.push({
-                        itemName:'id',
-                        op:'eq',
-                        value1:''
-                    });
-                }else{
-                    var permissions = res.res;
-                    var alldata = res.allData;
-                    if(undefined==alldata){
-                        if(permissions.length>0){
-                            var conditions = args.params.condition;
-                            conditions.simpleVOs=
-                                [{
-                                    "logicOp": "and",
-                                    "conditions": [{
-                                        "logicOp": "or",
-                                        "conditions": [
-                                            {
-                                                "field": "matter_type_m",
-                                                "op": "eq",
-                                                "value1": '3'
-                                            },
-                                            {
-                                                "field": "StaffNew",
-                                                "op": "in",
-                                                "value1": permissions
-                                            }
-                                        ]
-                                    }]
-                                }];
-                        }else{
-                            commonVOs.push({
-                                itemName:'matter_type_m',
-                                op:'eq',
-                                value1:'3'
-                            });
-                        }
-                    }
-                }
-                promise.resolve();
-            }
-        })
-    }, 10);
-    return promise;
-})
-```
-
-#### 挂载在viewmodel上的函数
+## 挂载在viewmodel上的函数
 
 ```javascript
 function (event) {
@@ -183,9 +112,12 @@ function (event) {
         }
     });
 }
+viewModel.on('afterLoadData', function () {
+    var id = viewModel.get("id").getValue();
+});
 ```
 
-#### 挂载在gridModel上的函数
+## 挂载在gridModel上的函数
 
 ```javascript
 //绑定在gridModel上的事件
@@ -232,28 +164,11 @@ gridModel.on('beforeSetDataSource', (data) => {
 gridModel.on('afterSetDataSource', (data) => {
     var change_data = JSON.parse(JSON.stringify(data));
 });
-```
-
-## 查询区域动态设置默认值并过滤
-
-```javascript
-function (event) {
-    var viewModel = this;
-    var bh = viewModel.get("params").abnormalevent;
-    viewModel.on('afterMount', function(){
-        // 获取查询区模型
-        const filtervm = viewModel.getCache('FilterViewModel'); 
-        filtervm.on('afterInit', function () {
-            // 进行查询区相关扩展
-            filtervm.get('abnormalevent').getFromModel().setValue(bh);
-        });
+gridModel.on('afterSelect', function (data) {
+        cb.utils.alert(data);
     });
-}
-//禁用查询字段
-viewModel.getCache('FilterViewModel').get('code').get('fromModel').setDisabled(true)
+
 ```
-
-
 
 ## 单元格设置点击事件
 
@@ -293,8 +208,6 @@ viewModel.getGridModel().doPropertyChange('changeGridProps', {
 viewModel.getGridModel().setRowState(0, 'disabled', true)
 ```
 
-
-
 ## 表格内部自定义按钮的显示隐藏
 
 ```javascript
@@ -309,5 +222,85 @@ gridModel.on('afterSetDataSource', function(arg) {
         gridModel.setActionsState(actionsState)
     }, 100);
 })
+
+//表格行按钮显示隐藏
+
+function (event) {
+  var viewModel = this;
+  //获取当前的model
+  let gridModel = viewModel.getGridModel();
+  //afterSetDataSource界面加载完成后，对数据进行修改
+  gridModel.on('afterStateRuleRunGridActionStates', () => {
+  //获取列表所有数据
+  const rows = gridModel.getRows();
+  //从缓存区获取按钮
+  const actions = gridModel.getCache('actions');
+  if (!actions) return;
+  const actionsStates = [];
+  rows.forEach(data => {
+    const actionState = {};
+    actions.forEach(action => {
+    //设置按钮可用不可用
+    actionState[action.cItemName] = { visible: true };
+    if(action.cItemName == 'btnDelete'){
+        if(data.enable==1){
+            actionState[action.cItemName] = { visible: false };
+        }
+    }
+    });
+    actionsStates.push(actionState);
+  });
+  gridModel.setActionsState(actionsStates);
+  });
+}
+
+```
+
+## 表格设置单元格的值
+
+~~~javascript
+setCellValue();
+
+setData();
+~~~
+
+## 表格设置某个单元格样式
+
+```javascript
+
+let gridModel = viewModel.getGridModel();
+gridModel.on('afterSetDataSource', (data) => {
+    if(undefined==data||data.length==0)return;
+    //获取到表格当前页的数据
+    var change_data = JSON.parse(JSON.stringify(data));
+    //开启同步块
+    var promiseCh = new cb.promise();
+    //请求调用后端API函数---【根据页面数据获取当前人的阅读信息】
+    cb.rest.invokeFunction("32de814b6db5410fa9d4a197dc7c05bc", {data:change_data},
+        function(err, res) {
+          if(err!=null){
+            cb.utils.alert('获取统计数据异常');
+            return false;
+          }else{
+            var lookResMy = res.res;
+            for(j = 0; j < change_data.length; j++) {
+              if(lookResMy.indexOf(change_data[j].id)>-1){
+                gridModel.setCellValue(j, "look_situation_m", "2");
+              }else{
+              gridModel.setCellValue(j, "look_situation_m", "1");
+              }
+            } 
+            //设置未查看颜色
+            var selected = document.querySelectorAll("div[title='未查看']");
+            if(null!=selected){
+              selected.forEach((data)=>{
+                data.style = data.style.cssText + '; color:red';
+              })
+            }
+          return promiseCh.resolve();
+        }
+    })
+
+  });
 ```
 
