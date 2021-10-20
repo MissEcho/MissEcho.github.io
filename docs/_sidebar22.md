@@ -22,24 +22,3 @@
 + [个人开发想法](./yonbip/readme.md)
 
   
-
-
-
-# 项目管理文档<!-- {docsify-ignore} -->
-
-+ [论文-十大知识领域](./projectmanger/paper.md)
-+ [项目管理过程汇总](./projectmanger/mangerprocess.md)
-
-
-
-
-
-# 学习项目记录<!-- {docsify-ignore} -->
-
-+ [集合库](./study/library.md)
-+ [js基础](./study/js.md)
-+ [js手写源码](./study/js-self.md)
-+ [js技巧](./study/js-skill.md)
-+ [前端工程化](./study/engineering.md)
-+ [项目集合](./study/project.md)
-+ [个人履历](./study/resume.md)

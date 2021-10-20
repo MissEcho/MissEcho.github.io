@@ -55,3 +55,6 @@ viewModel.get('bustype_name').setValue('氯碱采购计划');
 
 
 
+## 需要改派
+
+在当前节点勾选 改派即可。
