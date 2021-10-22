@@ -42,4 +42,5 @@
 + [js技巧](./study/js-skill.md)
 + [前端工程化](./study/engineering.md)
 + [项目集合](./study/project.md)
++ [webpack攻略](./study/webpack.md)
 + [个人履历](./study/resume.md)
