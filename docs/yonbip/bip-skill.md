@@ -52,6 +52,10 @@ console面板的信息分info(消息)、verbose(长消息)、error(错误)、war
 
 
 
+——
+
+
+
 ## 4.解释js的精度问题
 
 见bug 24163

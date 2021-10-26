@@ -47,9 +47,15 @@
 
   可以在network里面查看extends.js对应的版本号，如果版本号和之前的有变动，那说明更新成功了。
 
+- 如何确认某个bug代码上线了？
+
+  去git分支上查看提交历史。现在所有前端提交都有bug备注。所以很清楚哪次bug提交了。各个环境对应的分支也就两个。万一前端都不在的情况下，希望各位也能知道如何去查看bug有没有上。
+
 - 如果再build.sh的时候报错了，应该是缺少依赖包。新增了个filemanger-webpack-plugin，需要重新install下。
 
 ![image-20211015091153384](../assets/other/example4.jpg)
+
+
 
 
 

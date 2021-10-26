@@ -44,3 +44,10 @@
 + [项目集合](./study/project.md)
 + [webpack攻略](./study/webpack.md)
 + [个人履历](./study/resume.md)
++ [个人履历2](./study/resume2.md)
+
+
+
+# 生活<!-- {docsify-ignore} -->
+
++ [羽毛球相关知识](./life/badminton.md)
