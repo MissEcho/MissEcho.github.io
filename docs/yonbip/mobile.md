@@ -50,9 +50,11 @@ http://mobile.pre.430.zjmr.cn/mrjt-bill-mobile/view/yyarchive/4fa2577dMobileArch
 
 
 
-http://mobile.pre.430.zjmr.cn/mrjt-bill-mobile/componentLib/index.js
+mobile.pre.430.zjmr.cn/mrjt-bill-mobile/view/yyarchive/4fa2577dMobileArchive?terminalType=3&domainKey=mrjtbillservice&mode=browse&_id=11112510730490564864&approveid=11112510730490564864.2510730492530944&yht_access_token=bttdCtRWDh2NDJvcThSTnkyZ2U3V2tEM2VYZmhwTkJISmU3WTJacXpoYlFZUGs4b1U1NDdwN2NZUjZpN3JSeDdDdDQ1Y1A5dlZVWG9BZUVEaFhkN292NkNLdGxvYmRnMzF3SEdzVS9FQUtFcVE9X195ZXd1LnByZS40MzAuemptci5jbg..__ba4bcd1070d2d84f790ca1e78f2c0b32_1636437301835&isApprove=true
 
-F12
+http://test.zjmr.cn:3003/view/yylist/7cba653aMobileBlank?terminalType=3&domainKey=mrjtbillservice&pk_supplier=0JtNYAPGFEy0GjtZHFuN
+
+http://mobile.pre.430.zjmr.cn/mrjt-bill-mobile/componentLib/index.js
 
 
 
@@ -62,7 +64,7 @@ F12
 - 基本上页面不满足需求的话，就需要单独写组件实现了
 - 如何获取url上的参数？一般wm.getParames无效，需要使用window.location.search;
 - 如果要快速定位问题的话，一般只能通过设计器里面写代码。后面可以尝试使用override，根据webpack打包出来的资源加载替换掉。
-- fetch的post请求，参数放body里面
+- fetch的post请求，参数放body里面，并且只能放qs格式化
 
 ## 开发自定义组件
 
