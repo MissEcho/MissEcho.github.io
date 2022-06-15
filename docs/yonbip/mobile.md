@@ -27,6 +27,7 @@ http://test.zjmr.cn:3003/view/YYArchive/4fa2577dMobileArchive?tenantId=brliz47i&
 - 安卓机安装apk包     https://www.pgyer.com/esn-android-b   密码：123
 - 安装好之后，登录。最好使用测试人员账号，审批中心数据多一点。需要切换明日测试空间
 - 在数据线连接之前，先设置好开发者模式，每个机器设置不太一样。也要确定数据线是否有数据传输功能，不能只是充电的数据线。
+- 还需要在开发者选项中，打开USB选项调试，不然谷歌监控不到设备
 - 连接调试模式，然后可以打开对应的页面，在谷歌上输入 [chrome://inspect/#devices](chrome://inspect/#devices)
 - 查看devices里面的信息，需要翻墙
 

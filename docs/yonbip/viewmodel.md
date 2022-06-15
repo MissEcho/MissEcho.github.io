@@ -2,7 +2,6 @@
 
 ```javascript
 //viewModel.excute(name,args) 通过cb.models.js里面的_get_data('events')即可获得所有excute事件
-
 viewModel.excute('back',args)
 viewModel.excute('columnSetting',args)
 viewModel.excute('customInit',args)
@@ -19,7 +18,6 @@ viewModel.excute('toggle',args)
 
 ```javascript
 // containerModel.prototype.communication
-
 viewModel.communication({ type: 'return' });
 //或者说通过该方法，打开model，html，以及其他自定义组件，比如
 viewmodel.communication({
